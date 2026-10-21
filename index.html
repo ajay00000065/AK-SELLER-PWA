@@ -1,131 +1,112 @@
 <!doctype html>
 <html lang="hi">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#172554">
-  <meta name="description" content="AK SELLER — खोजें, तुलना करें और भरोसेमंद खरीद लिंक तक जाएँ।">
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="icons/icon-192.png">
-  <link rel="apple-touch-icon" href="icons/icon-192.png">
-  <title>AK SELLER — Smart Finds</title>
-  <style>
-    :root{--navy:#172554;--blue:#2563eb;--sky:#dbeafe;--ink:#172033;--muted:#64748b;--bg:#f5f7fb;--card:#fff;--line:#e5eaf2;--green:#047857}
-    *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
-    button,input,select{font:inherit} button{cursor:pointer}
-    .top{background:linear-gradient(135deg,#172554,#1d4ed8);color:white;padding:18px 16px 22px}
-    .top-inner{max-width:1100px;margin:auto}
-    .brand-row{display:flex;align-items:center;gap:12px}
-    .logo{width:46px;height:46px;border-radius:15px;background:#fff;color:#1d4ed8;display:grid;place-items:center;font-weight:900;font-size:17px;box-shadow:0 5px 15px #0b1c4a55}
-    h1{font-size:22px;line-height:1.1;margin:0;letter-spacing:.3px}.tag{font-size:12px;color:#dbeafe;margin-top:5px}
-    .hero{display:grid;grid-template-columns:1.2fr .8fr;gap:14px;align-items:center;margin-top:24px}
-    .hero h2{font-size:clamp(24px,4vw,38px);line-height:1.1;margin:0 0 10px}.hero p{margin:0;color:#dbeafe;font-size:14px;max-width:440px}
-    .hero-art{justify-self:end;width:min(100%,250px);height:132px;border-radius:24px;background:linear-gradient(135deg,#93c5fd,#eff6ff);display:grid;place-items:center;color:#1e3a8a;font-size:60px;box-shadow:inset 0 0 0 1px #ffffff66}
-    .search-wrap{max-width:1100px;margin:-19px auto 0;padding:0 16px;position:relative}
-    .searchbox{display:flex;gap:10px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:11px 14px;box-shadow:0 8px 24px #17255412}
-    .searchbox span{font-size:20px}.searchbox input{border:0;outline:0;flex:1;min-width:0;background:transparent}
-    main{max-width:1100px;margin:22px auto;padding:0 16px 36px}
-    .section-head{display:flex;justify-content:space-between;align-items:end;gap:12px;margin:22px 0 12px}
-    .section-head h2{font-size:19px;margin:0}.section-head p{margin:4px 0 0;color:var(--muted);font-size:12px}
-    .chips{display:flex;gap:8px;overflow:auto;padding:2px 0 7px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}
-    .chip{border:1px solid var(--line);background:#fff;color:#334155;padding:9px 14px;border-radius:999px;white-space:nowrap;font-size:13px}
-    .chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-    .grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-    .product{background:var(--card);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column;min-width:0;box-shadow:0 4px 14px #0f172a06}
-    .product-art{height:150px;background:linear-gradient(135deg,#eff6ff,#f8fafc);display:grid;place-items:center;font-size:58px;position:relative}
-    .label{position:absolute;left:10px;top:10px;background:#dcfce7;color:#166534;font-size:10px;font-weight:700;padding:5px 8px;border-radius:999px}
-    .product-body{padding:12px;display:flex;flex-direction:column;gap:8px;flex:1}
-    .category{font-size:11px;color:var(--muted)}.product h3{font-size:14px;line-height:1.35;margin:0;min-height:38px}
-    .price-row{display:flex;align-items:baseline;gap:7px;flex-wrap:wrap}.price{font-weight:800;font-size:18px;color:#0f172a}.old{font-size:11px;color:#94a3b8;text-decoration:line-through}
-    .note{font-size:11px;color:#64748b;line-height:1.4}
-    .buy{border:0;background:var(--blue);color:#fff;font-weight:700;border-radius:11px;padding:11px 10px;width:100%;margin-top:auto}.buy:active{transform:scale(.99)}
-    .empty{grid-column:1/-1;background:white;border:1px dashed #cbd5e1;border-radius:16px;text-align:center;padding:32px;color:var(--muted)}
-    .info{margin-top:22px;border-radius:16px;background:#eff6ff;border:1px solid #bfdbfe;padding:14px 16px;font-size:12px;color:#1e3a8a;line-height:1.6}
-    footer{border-top:1px solid var(--line);padding:20px 16px;color:var(--muted);font-size:12px;text-align:center;background:#fff}
-    .modal-bg{position:fixed;inset:0;background:#0f172a88;display:none;align-items:center;justify-content:center;padding:18px;z-index:20}
-    .modal-bg.show{display:flex}.modal{background:white;border-radius:20px;padding:22px;max-width:420px;width:100%;box-shadow:0 20px 80px #0003}.modal h3{margin:0 0 8px}.modal p{color:#475569;font-size:14px;line-height:1.55}.modal button{margin-top:8px}
-    .install{display:none;background:#fff;color:var(--navy);border:1px solid #bfdbfe;border-radius:999px;padding:8px 12px;font-weight:700;font-size:12px;margin-left:auto}
-    .install.show{display:block}
-    @media(max-width:760px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.product-art{height:130px}.hero{grid-template-columns:1fr .55fr}.hero-art{height:100px;font-size:42px}.hero p{font-size:12px}.product-body{padding:10px}.price{font-size:16px}}
-    @media(max-width:390px){.hero-art{display:none}.hero{grid-template-columns:1fr}.grid{gap:9px}.product-art{height:112px}.product h3{font-size:13px}}
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#2046b5">
+<meta name="description" content="AK SELLER - Smart finds. Simple shopping.">
+<title>AK SELLER | Smart finds. Simple shopping.</title>
+<style>
+:root{--blue:#2459d6;--navy:#172554;--bg:#f4f6fb;--ink:#172033;--muted:#657184;--line:#e1e6ef}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Devanagari",Arial,sans-serif;background:var(--bg);color:var(--ink)}
+header{background:linear-gradient(135deg,#172b71,#2459d6);color:#fff;padding:24px 18px 36px;border-radius:0 0 26px 26px}
+.brand{display:flex;gap:12px;align-items:center}.logo{width:58px;height:58px;background:white;color:#2459d6;border-radius:17px;display:grid;place-items:center;font-size:23px;font-weight:900}.brand h1{margin:0;font-size:27px}.brand p{margin:3px 0 0;color:#dbe7ff}.hero{margin-top:28px;display:flex;align-items:center;gap:10px}.hero h2{font-size:30px;line-height:1.25;margin:0 0 10px}.hero p{color:#dce6ff;margin:0;line-height:1.5}.bags{font-size:54px;background:#dce9ff;border-radius:28px;padding:17px 12px;min-width:100px;text-align:center}
+main{padding:0 16px 32px;max-width:1000px;margin:auto}.search{display:flex;background:#fff;border:1px solid var(--line);border-radius:20px;padding:15px 16px;margin-top:-18px;box-shadow:0 8px 24px #1725540d}.search input{border:0;outline:0;font:inherit;width:100%;font-size:18px}.section{margin-top:28px}.section h2{font-size:23px;margin:0 0 6px}.sub{color:var(--muted);margin:0 0 14px}.chips{display:flex;gap:9px;overflow:auto;padding:3px 0 8px}.chip{white-space:nowrap;border:1px solid var(--line);border-radius:999px;background:#fff;padding:10px 17px;font:inherit}.chip.active{background:var(--navy);color:#fff;border-color:var(--navy)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.product{background:#fff;border:1px solid var(--line);border-radius:22px;overflow:hidden;display:flex;flex-direction:column}.photo{height:150px;background:#edf2fa;display:grid;place-items:center;font-size:62px}.details{padding:13px;display:flex;flex-direction:column;flex:1}.category{font-size:13px;color:var(--muted)}.details h3{font-size:17px;line-height:1.3;margin:7px 0 12px}.price{font-size:22px;font-weight:800}.old{font-size:13px;color:#8b95a5;text-decoration:line-through;font-weight:400;margin-left:5px}.desc{font-size:13px;color:var(--muted);line-height:1.4;min-height:36px;margin:9px 0 13px}.btn{border:0;border-radius:13px;background:var(--blue);color:white;padding:12px 10px;font:inherit;font-weight:750;cursor:pointer;width:100%;margin-top:auto}.btn.secondary{background:#edf2ff;color:#1d45ae;border:1px solid #d7e1ff}.empty{grid-column:1/-1;text-align:center;padding:28px;color:var(--muted);background:white;border-radius:16px}.notice{margin-top:22px;background:#fff;border:1px solid var(--line);border-radius:16px;padding:14px;color:var(--muted);font-size:13px;line-height:1.5}.cartbar{position:sticky;bottom:10px;z-index:2;margin:16px auto 0;max-width:500px;background:#172554;color:#fff;padding:12px 14px;border-radius:16px;display:flex;align-items:center;justify-content:space-between;gap:10px;box-shadow:0 8px 25px #0002}.cartbar .btn{width:auto;margin:0;background:#20a464}.hide{display:none!important}dialog{border:0;border-radius:20px;width:min(92vw,480px);padding:20px;box-shadow:0 20px 70px #0005}dialog::backdrop{background:#10182799}dialog h2{margin:0 0 12px}label{display:block;font-size:14px;font-weight:650;margin:12px 0 5px}input,textarea,select{font:inherit}dialog input,dialog textarea,dialog select{width:100%;padding:11px;border:1px solid #cfd7e5;border-radius:10px;background:white}dialog textarea{min-height:70px}.rowbtn{display:flex;gap:10px;margin-top:16px}.rowbtn button{flex:1}.small{font-size:12px;color:var(--muted)}footer{text-align:center;padding:25px 12px;color:var(--muted);font-size:13px}
+@media(min-width:700px){.grid{grid-template-columns:repeat(3,minmax(0,1fr))}.photo{height:190px}.hero h2{font-size:38px}}
+</style>
 </head>
 <body>
-<header class="top">
-  <div class="top-inner">
-    <div class="brand-row">
-      <div class="logo">AK</div>
-      <div><h1>AK SELLER</h1><div class="tag">Smart finds. Simple shopping.</div></div>
-      <button id="installBtn" class="install">Install App</button>
-    </div>
-    <div class="hero">
-      <div><h2>अच्छी चीज़ें,<br>एक आसान जगह।</h2><p>अपनी पसंद का प्रोडक्ट खोजें और खरीदने के लिए आधिकारिक स्टोर पर जाएँ।</p></div>
-      <div class="hero-art" aria-hidden="true">🛍️</div>
-    </div>
-  </div>
+<header>
+  <div class="brand"><div class="logo">AK</div><div><h1>AK SELLER</h1><p>Smart finds. Simple shopping.</p></div></div>
+  <div class="hero"><div><h2>अच्छी चीज़ें,<br>एक आसान जगह।</h2><p>अपनी पसंद का प्रोडक्ट चुनें और WhatsApp पर ऑर्डर भेजें।</p></div><div class="bags">🛍️</div></div>
 </header>
-<div class="search-wrap"><label class="searchbox"><span>⌕</span><input id="search" type="search" placeholder="प्रोडक्ट खोजें..." aria-label="प्रोडक्ट खोजें"></label></div>
 <main>
-  <section>
-    <div class="section-head"><div><h2>कैटेगरी</h2><p>अपनी पसंद चुनें</p></div></div>
-    <div id="categories" class="chips"></div>
-  </section>
-  <section>
-    <div class="section-head"><div><h2>लोकप्रिय प्रोडक्ट</h2><p>डेमो सूची — कीमतें केवल उदाहरण हैं</p></div></div>
-    <div id="products" class="grid"></div>
-  </section>
-  <div class="info"><strong>पारदर्शिता:</strong> यह AK SELLER का शुरुआती डेमो है। अभी प्रोडक्ट और कीमतें उदाहरण के लिए हैं, और Buy Now बटन वास्तविक खरीद नहीं करता। प्रकाशित करने से पहले केवल सत्यापित जानकारी और अधिकृत affiliate लिंक जोड़ें। Flipkart से जुड़ाव या आधिकारिक समर्थन का दावा न करें।</div>
+  <div class="search"><span style="font-size:20px;margin-right:10px">⌕</span><input id="search" placeholder="प्रोडक्ट खोजें..." aria-label="प्रोडक्ट खोजें"></div>
+  <section class="section"><h2>कैटेगरी</h2><p class="sub">अपनी पसंद चुनें</p><div class="chips" id="chips"></div></section>
+  <section class="section"><h2>प्रोडक्ट</h2><p class="sub">प्रोडक्ट चुनें और WhatsApp पर ऑर्डर भेजें</p><div class="grid" id="products"></div></section>
+  <div class="notice"><b>दुकानदार के लिए:</b> यह वेबसाइट WhatsApp पर ऑर्डर भेजती है। अभी ऑनलाइन पेमेंट, स्टॉक मैनेजमेंट या अपने-आप डिलीवरी की सुविधा नहीं है। नीचे ⚙️ से अपना WhatsApp नंबर और प्रोडक्ट बदलें। केवल वही सामान बेचें जिसकी कीमत, उपलब्धता और सप्लायर आपने पक्का किया हो।</div>
+  <div class="cartbar hide" id="cartbar"><span id="cartcount">0 प्रोडक्ट</span><button class="btn" onclick="checkout()">WhatsApp पर ऑर्डर करें</button></div>
 </main>
-<footer>© <span id="year"></span> AK SELLER · स्वतंत्र प्रोडक्ट-डिस्कवरी डेमो · <span>सभी खरीद संबंधित स्टोर पर पूरी होती हैं।</span></footer>
-<div class="modal-bg" id="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal"><h3 id="modalTitle">डेमो प्रोडक्ट</h3><p id="modalText">इस प्रोडक्ट का वास्तविक खरीद लिंक अभी जोड़ा नहीं गया है।</p><button class="buy" id="closeModal">ठीक है</button></div>
-</div>
+<footer>© <span id="year"></span> AK SELLER · Made with care</footer>
+<dialog id="orderDialog">
+  <h2>ऑर्डर की जानकारी</h2><p class="small">विवरण भरकर WhatsApp में ऑर्डर भेजें। भेजने से पहले आप मैसेज जाँच सकते हैं।</p>
+  <label for="customer">आपका नाम *</label><input id="customer" autocomplete="name" placeholder="पूरा नाम">
+  <label for="phone">मोबाइल नंबर *</label><input id="phone" inputmode="tel" placeholder="10 अंकों का नंबर">
+  <label for="address">डिलीवरी का पता *</label><textarea id="address" placeholder="मकान/गली, शहर, पिन कोड"></textarea>
+  <label for="notes">अन्य जानकारी (वैकल्पिक)</label><textarea id="notes" placeholder="रंग, साइज आदि"></textarea>
+  <div class="rowbtn"><button class="btn secondary" onclick="document.getElementById('orderDialog').close()">वापस</button><button class="btn" onclick="sendOrder()">WhatsApp खोलें</button></div>
+</dialog>
+<dialog id="settingsDialog">
+  <h2>AK SELLER सेटिंग्स</h2>
+  <p class="small">यह सेटिंग इसी ब्राउज़र में सेव होगी। वेबसाइट का डेटा सभी ग्राहकों के लिए बदलने हेतु कोड में भी बदलाव/अपलोड करना होगा।</p>
+  <label for="wa">WhatsApp नंबर (देश कोड सहित, जैसे 91XXXXXXXXXX) *</label><input id="wa" inputmode="numeric" placeholder="91XXXXXXXXXX">
+  <label for="adminpin">सेटिंग खोलने का PIN (अपने लिए)</label><input id="adminpin" type="password" placeholder="पहली बार कोई PIN बनाएँ">
+  <label for="newName">प्रोडक्ट का नाम</label><input id="newName" placeholder="जैसे Cotton T-shirt">
+  <label for="newPrice">कीमत ₹</label><input id="newPrice" type="number" min="1" placeholder="जैसे 499">
+  <label for="newCat">कैटेगरी</label><input id="newCat" placeholder="जैसे फैशन">
+  <label for="newEmoji">प्रोडक्ट आइकन/इमोजी</label><input id="newEmoji" placeholder="जैसे 👕">
+  <label for="newDesc">विवरण</label><input id="newDesc" placeholder="साइज/रंग/जानकारी">
+  <div class="rowbtn"><button class="btn secondary" onclick="document.getElementById('settingsDialog').close()">बंद करें</button><button class="btn" onclick="saveSettings()">सेव करें</button></div>
+  <button class="btn secondary" style="margin-top:10px" onclick="addProduct()">यह प्रोडक्ट जोड़ें</button>
+  <button class="btn secondary" style="margin-top:10px" onclick="resetProducts()">डेमो प्रोडक्ट वापस लाएँ</button>
+  <p class="small">सेटिंग खोलने के लिए पेज के सबसे नीचे AK SELLER शीर्षक पर 5 बार टैप करें। PIN केवल इस ब्राउज़र में है; यह वास्तविक सुरक्षित ऑनलाइन एडमिन लॉगिन नहीं है।</p>
+</dialog>
 <script>
-const products = [
- {id:1,name:"Wireless Earbuds",cat:"Electronics",price:799,old:1299,emoji:"🎧",badge:"लोकप्रिय",description:"वायरलेस ऑडियो एक्सेसरी — डेमो प्रोडक्ट",url:""},
- {id:2,name:"Phone Back Cover",cat:"Mobile",price:199,old:349,emoji:"📱",badge:"",description:"फोन कवर — अपने फोन मॉडल से मिलान करें",url:""},
- {id:3,name:"Everyday Backpack",cat:"Fashion",price:599,old:899,emoji:"🎒",badge:"",description:"दैनिक इस्तेमाल का बैग — डेमो प्रोडक्ट",url:""},
- {id:4,name:"Desk Lamp",cat:"Home",price:449,old:699,emoji:"💡",badge:"",description:"डेस्क लैंप — डेमो प्रोडक्ट",url:""},
- {id:5,name:"Sports Water Bottle",cat:"Lifestyle",price:249,old:399,emoji:"🥤",badge:"",description:"पानी की बोतल — डेमो प्रोडक्ट",url:""},
- {id:6,name:"Classic Wrist Watch",cat:"Fashion",price:999,old:1499,emoji:"⌚",badge:"",description:"घड़ी — डेमो प्रोडक्ट",url:""},
- {id:7,name:"Bluetooth Speaker",cat:"Electronics",price:699,old:1099,emoji:"🔊",badge:"",description:"पोर्टेबल स्पीकर — डेमो प्रोडक्ट",url:""},
- {id:8,name:"Storage Organizer",cat:"Home",price:299,old:499,emoji:"🧺",badge:"",description:"घर के लिए स्टोरेज — डेमो प्रोडक्ट",url:""}
+const demoProducts=[
+{id:1,name:"Wireless Earbuds",category:"इलेक्ट्रॉनिक्स",price:799,old:1299,emoji:"🎧",desc:"वायरलेस ऑडियो एक्सेसरी — डेमो प्रोडक्ट"},
+{id:2,name:"Phone Back Cover",category:"मोबाइल",price:199,old:349,emoji:"📱",desc:"फोन कवर — अपने फोन मॉडल से मिलान करें"},
+{id:3,name:"Cotton T-shirt",category:"फैशन",price:399,old:599,emoji:"👕",desc:"आरामदायक कैज़ुअल टी-शर्ट — डेमो"},
+{id:4,name:"Storage Organizer",category:"घर",price:299,old:449,emoji:"🧺",desc:"घर के सामान के लिए ऑर्गनाइज़र — डेमो"}
 ];
-const catLabels = {"All":"सभी","Electronics":"इलेक्ट्रॉनिक्स","Mobile":"मोबाइल","Fashion":"फैशन","Home":"घर","Lifestyle":"लाइफस्टाइल"};
-let activeCat = "All";
-const $ = id => document.getElementById(id);
-function money(n){return "₹"+n.toLocaleString("en-IN")}
-function renderCats(){
- const cats=["All",...new Set(products.map(p=>p.cat))];
- $("categories").innerHTML=cats.map(c=>`<button class="chip ${activeCat===c?"active":""}" data-cat="${c}">${catLabels[c]||c}</button>`).join("");
- $("categories").querySelectorAll("button").forEach(b=>b.addEventListener("click",()=>{activeCat=b.dataset.cat;renderCats();renderProducts()}));
-}
-function renderProducts(){
- const q=$("search").value.trim().toLowerCase();
- const list=products.filter(p=>(activeCat==="All"||p.cat===activeCat)&&(`${p.name} ${p.cat} ${p.description}`.toLowerCase().includes(q)));
- $("products").innerHTML=list.length?list.map(p=>`<article class="product">
-   <div class="product-art"><span>${p.emoji}</span>${p.badge?`<span class="label">${p.badge}</span>`:""}</div>
-   <div class="product-body"><div class="category">${catLabels[p.cat]||p.cat}</div><h3>${p.name}</h3>
-   <div class="price-row"><span class="price">${money(p.price)}</span><span class="old">${money(p.old)}</span></div>
-   <div class="note">${p.description}</div><button class="buy" data-buy="${p.id}">Buy Now ↗</button></div></article>`).join(""):`<div class="empty">कोई प्रोडक्ट नहीं मिला। दूसरा नाम खोजें।</div>`;
- $("products").querySelectorAll("[data-buy]").forEach(b=>b.addEventListener("click",()=>buyProduct(Number(b.dataset.buy))));
-}
-function buyProduct(id){
- const p=products.find(x=>x.id===id);
- if(p && p.url && /^https:\/\/\S+$/i.test(p.url)){window.open(p.url,"_blank","noopener,noreferrer");return}
- $("modalTitle").textContent=p?p.name:"डेमो प्रोडक्ट";
- $("modalText").textContent="इस प्रोडक्ट का वास्तविक और अधिकृत खरीद/affiliate लिंक अभी जोड़ा नहीं गया है। अभी दिखाई गई कीमत केवल डेमो है; कोई ऑर्डर या भुगतान नहीं होगा।";
- $("modal").classList.add("show");
-}
-$("search").addEventListener("input",renderProducts);
-$("closeModal").addEventListener("click",()=>$("modal").classList.remove("show"));
-$("modal").addEventListener("click",e=>{if(e.target===$("modal"))$("modal").classList.remove("show")});
+let products=JSON.parse(localStorage.getItem("ak_products")||"null")||demoProducts;
+let cart={};let category="सभी";let taps=0;
+const $=id=>document.getElementById(id);
 $("year").textContent=new Date().getFullYear();
-renderCats();renderProducts();
-let deferredPrompt;
-window.addEventListener("beforeinstallprompt",e=>{e.preventDefault();deferredPrompt=e;$("installBtn").classList.add("show")});
-$("installBtn").addEventListener("click",async()=>{if(!deferredPrompt){alert("Chrome मेन्यू (⋮) खोलें और 'Add to Home screen' चुनें।");return}deferredPrompt.prompt();await deferredPrompt.userChoice;deferredPrompt=null;$("installBtn").classList.remove("show")});
-if("serviceWorker" in navigator && location.protocol.startsWith("http")){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js").catch(()=>{}))}
+function saveProducts(){localStorage.setItem("ak_products",JSON.stringify(products))}
+function money(n){return "₹"+Number(n).toLocaleString("en-IN")}
+function render(){
+ const cats=["सभी",...new Set(products.map(p=>p.category))];
+ $("chips").innerHTML=cats.map(c=>`<button class="chip ${c===category?"active":""}" onclick="setCat(${JSON.stringify(c)})">${c}</button>`).join("");
+ const q=$("search").value.trim().toLowerCase();
+ const shown=products.filter(p=>(category==="सभी"||p.category===category)&&[p.name,p.category,p.desc].join(" ").toLowerCase().includes(q));
+ $("products").innerHTML=shown.length?shown.map(p=>`<article class="product"><div class="photo">${esc(p.emoji||"🛍️")}</div><div class="details"><span class="category">${esc(p.category)}</span><h3>${esc(p.name)}</h3><div class="price">${money(p.price)} ${p.old?`<span class="old">${money(p.old)}</span>`:""}</div><p class="desc">${esc(p.desc||"")}</p><button class="btn" onclick="addCart(${p.id})">कार्ट में जोड़ें</button></div></article>`).join(""):`<div class="empty">कोई प्रोडक्ट नहीं मिला।</div>`;
+ const count=Object.values(cart).reduce((a,b)=>a+b,0);$("cartbar").classList.toggle("hide",count===0);$("cartcount").textContent=count+" प्रोडक्ट";
+}
+function esc(s){return String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function setCat(c){category=c;render()}
+function addCart(id){cart[id]=(cart[id]||0)+1;render()}
+$("search").addEventListener("input",render);
+function checkout(){const wa=localStorage.getItem("ak_whatsapp")||"";if(!/^\d{10,15}$/.test(wa)){alert("पहले दुकानदार का WhatsApp नंबर सेट करें। पेज के नीचे AK SELLER शीर्षक पर 5 बार टैप करें।");openSettings();return}$("orderDialog").showModal()}
+function sendOrder(){
+ const name=$("customer").value.trim(),phone=$("phone").value.trim(),address=$("address").value.trim();
+ if(!name||!/^\d{10}$/.test(phone)||!address){alert("कृपया नाम, 10 अंकों का मोबाइल नंबर और पूरा पता भरें।");return}
+ const lines=Object.entries(cart).filter(([id,q])=>q>0).map(([id,q])=>{const p=products.find(x=>x.id===Number(id));return p?`• ${p.name} × ${q} = ${money(p.price*q)}`:""}).filter(Boolean);
+ if(!lines.length){alert("कार्ट खाली है।");return}
+ const total=Object.entries(cart).reduce((sum,[id,q])=>{const p=products.find(x=>x.id===Number(id));return sum+(p?p.price*q:0)},0);
+ const msg=`नमस्ते AK SELLER, मुझे ऑर्डर देना है।\n\n${lines.join("\n")}\n\nकुल अनुमानित राशि: ${money(total)}\n\nनाम: ${name}\nमोबाइल: ${phone}\nपता: ${address}\nअतिरिक्त जानकारी: ${$("notes").value.trim()||"नहीं"}\n\nकृपया उपलब्धता, डिलीवरी चार्ज और अंतिम कीमत कन्फर्म करें।`;
+ const wa=localStorage.getItem("ak_whatsapp");window.open("https://wa.me/"+wa+"?text="+encodeURIComponent(msg),"_blank");$("orderDialog").close();
+}
+function openSettings(){
+ const saved=localStorage.getItem("ak_whatsapp")||"";$("wa").value=saved;
+ $("adminpin").value=localStorage.getItem("ak_pin")||"";$("settingsDialog").showModal();
+}
+$("year").parentElement.addEventListener("click",()=>{taps++;if(taps>=5){taps=0;openSettings()}});
+function saveSettings(){
+ let wa=$("wa").value.replace(/\D/g,"");
+ if(!/^\d{10,15}$/.test(wa)){alert("WhatsApp नंबर देश कोड सहित लिखें, जैसे 91XXXXXXXXXX। + और स्पेस नहीं लिखें।");return}
+ const oldPin=localStorage.getItem("ak_pin");const pin=$("adminpin").value.trim();
+ if(oldPin&&oldPin!==pin){alert("PIN सही नहीं है।");return}
+ if(!oldPin&&pin.length<4){alert("पहली बार कम से कम 4 अंकों/अक्षरों का PIN बनाएँ।");return}
+ localStorage.setItem("ak_whatsapp",wa);localStorage.setItem("ak_pin",pin);alert("सेटिंग इस ब्राउज़र में सेव हो गई।");$("settingsDialog").close()
+}
+function addProduct(){
+ const name=$("newName").value.trim(),price=Number($("newPrice").value),cat=$("newCat").value.trim(),emoji=$("newEmoji").value.trim()||"🛍️",desc=$("newDesc").value.trim();
+ if(!name||!Number.isFinite(price)||price<=0||!cat){alert("प्रोडक्ट नाम, सही कीमत और कैटेगरी भरें।");return}
+ products.push({id:Date.now(),name,price,category:cat,emoji,desc,old:null});saveProducts();category="सभी";render();["newName","newPrice","newCat","newEmoji","newDesc"].forEach(id=>$(id).value="");alert("प्रोडक्ट इस ब्राउज़र में जुड़ गया।")
+}
+function resetProducts(){if(confirm("डेमो प्रोडक्ट वापस लाएँ? आपके जोड़े प्रोडक्ट हट जाएँगे।")){products=demoProducts;cart={};saveProducts();render()}}
+render();
 </script>
 </body>
 </html>
